@@ -9,14 +9,12 @@ namespace AutomationPractice.UITests.StepDefinitions
     public sealed class CommonStepDefinition
     {
         private IWebDriver _driver;
-        private Settings _settings;
         private HomeView _homeView;
         private AuthenticationView _authenticationView;
 
-        public CommonStepDefinition(IWebDriver driver, Settings settings)
+        public CommonStepDefinition(IWebDriver driver)
         {
             _driver = driver;
-            _settings = settings;
             _homeView = new HomeView(_driver);
             _authenticationView = new AuthenticationView(_driver);
         }
@@ -24,20 +22,20 @@ namespace AutomationPractice.UITests.StepDefinitions
         [Given(@"I sign in as User1")]
         public void GivenISignInAsUser1()
         {
-            _driver.Navigate().GoToUrl(_settings.HostUrl);
+            _driver.Navigate().GoToUrl(Settings.HostUrl);
             _homeView.ClickSignInLink();
-            _authenticationView.SetEmailAdress(_settings.User1.Email);
-            _authenticationView.SetPassword(_settings.User1.Password);
+            _authenticationView.SetEmailAdress(Settings.User1.Email);
+            _authenticationView.SetPassword(Settings.User1.Password);
             _authenticationView.ClickSignIn();
         }
 
         [Given(@"I sign in as User2")]
         public void GivenISignInAsUser2()
         {
-            _driver.Navigate().GoToUrl(_settings.HostUrl);
+            _driver.Navigate().GoToUrl(Settings.HostUrl);
             _homeView.ClickSignInLink();
-            _authenticationView.SetEmailAdress(_settings.User2.Email);
-            _authenticationView.SetPassword(_settings.User2.Password);
+            _authenticationView.SetEmailAdress(Settings.User2.Email);
+            _authenticationView.SetPassword(Settings.User2.Password);
             _authenticationView.ClickSignIn();
         }
 
@@ -45,7 +43,7 @@ namespace AutomationPractice.UITests.StepDefinitions
         [When(@"I open home page")]
         public void WhenIOpenhomeView()
         {
-            _driver.Navigate().GoToUrl(_settings.HostUrl);
+            _driver.Navigate().GoToUrl(Settings.HostUrl);
         }
     }
 }

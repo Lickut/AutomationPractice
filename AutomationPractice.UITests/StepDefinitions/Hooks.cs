@@ -1,6 +1,6 @@
-﻿using BoDi;
+﻿using AutomationPractice.UITests.Support;
+using BoDi;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using TechTalk.SpecFlow;
 
 namespace AutomationPractice.UITests.StepDefinitions
@@ -23,8 +23,7 @@ namespace AutomationPractice.UITests.StepDefinitions
         [BeforeScenario]
         public void BeforeEveryScenario()
         {
-            var driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
+            var driver = DriverFactory.CreateWebDriver();
             _objectContainer.RegisterInstanceAs(driver, typeof(IWebDriver));
         }
 
@@ -32,13 +31,12 @@ namespace AutomationPractice.UITests.StepDefinitions
         public void AfterEveryScenario()
         {
             var driver = _objectContainer.Resolve<IWebDriver>();
-            driver.Quit();
+            DriverFactory.CloseDriver(driver);
         }
 
         [AfterTestRun]
         public static void Teardown()
         {
-
         }
     }
 }
