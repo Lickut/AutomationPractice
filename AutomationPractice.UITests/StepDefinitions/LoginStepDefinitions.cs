@@ -11,17 +11,15 @@ namespace AutomationPractice.UITests.StepDefinitions
     public sealed class LoginStepDefinitions
     {
         private IWebDriver _driver;
-        private Settings _settings;
         private HomeView _homeView;
         private AuthenticationView _authenticationView;
         private MyAccountView _myAccountView;
         private string _emailAdress;
         private string _password;
 
-        public LoginStepDefinitions(IWebDriver driver, Settings settings)
+        public LoginStepDefinitions(IWebDriver driver)
         {
             _driver = driver;
-            _settings = settings;
             _homeView = new HomeView(_driver);
             _authenticationView = new AuthenticationView(_driver);
             _myAccountView = new MyAccountView(_driver);
@@ -30,15 +28,15 @@ namespace AutomationPractice.UITests.StepDefinitions
         [Given(@"User1 is created")]
         public void GivenUser1IsCreated()
         {
-            _emailAdress = _settings.User1.Email;
-            _password = _settings.User1.Password;
+            _emailAdress = Settings.User1.Email;
+            _password = Settings.User1.Password;
         }
 
         [Given(@"Home page is opened")]
         [When(@"I open home page")]
         public void WhenIOpenhomeView()
         {
-            _driver.Navigate().GoToUrl(_settings.HostUrl);
+            _driver.Navigate().GoToUrl(Settings.HostUrl);
         }
 
         [When(@"I click sign in link")]

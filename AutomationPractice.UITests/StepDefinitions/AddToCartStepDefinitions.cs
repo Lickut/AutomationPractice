@@ -16,7 +16,7 @@ namespace AutomationPractice.UITests.StepDefinitions
         private SearchView _searchVIew;
         private CartView _cartView;
 
-        public AddToCartStepDefinitions(IWebDriver driver, Settings settings)
+        public AddToCartStepDefinitions(IWebDriver driver)
         {
             _driver = driver;
             _homeView = new HomeView(_driver);
