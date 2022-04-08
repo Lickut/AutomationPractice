@@ -62,7 +62,11 @@ namespace AutomationPractice.UITests.Support
         {
             FirefoxOptions options = new FirefoxOptions();
             options.AddArgument("start-maximized");
-            return new FirefoxDriver();
+            options.AddArgument("start-maximized");
+            options.AddArguments("−−incognito");
+            var driver = new FirefoxDriver();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            return driver;
         }
 
         private static ChromeDriver CreateChromeDriver()
@@ -70,7 +74,10 @@ namespace AutomationPractice.UITests.Support
             ChromeOptions options = new ChromeOptions();
             options.AddArgument("start-maximized");
             options.AddArgument("disable-extensions");
-            return new ChromeDriver(options);
+            options.AddArguments("−−incognito");
+            var driver = new ChromeDriver(options);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            return driver;
         }
 
         private static DriverType GetDriverType()
